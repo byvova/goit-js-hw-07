@@ -24,7 +24,7 @@ list.addEventListener("click", handleClick);
 let instance = "";
 function handleClick(evt) {
 evt.preventDefault();
-if (evt.target === evt.currentTarget) {
+if (evt.target === Node.tagName) {
     console.log("exit");
     return;
 }
