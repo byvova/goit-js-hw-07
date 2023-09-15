@@ -4,46 +4,46 @@ import { galleryItems } from "./gallery-items.js";
 console.log(galleryItems);
 const list = document.querySelector(".gallery");
 const markup = galleryItems
-    .map(
+.map(
     ({ preview, original, description }) => `
 <li class="gallery__item">
-    <a class="gallery__link" href="${original}">
+<a class="gallery__link" href="${original}">
     <img
-        class="gallery__image"
-        src="${preview}"
-        data-source="${original}"
-        alt="${description}"
+    class="gallery__image"
+    src="${preview}"
+    data-source="${original}"
+    alt="${description}"
     />
-    </a>
+</a>
 </li>
 `
-    )
-    .join("");
+)
+.join("");
 list.insertAdjacentHTML("beforeend", markup);
 list.addEventListener("click", handleClick);
 let instance = "";
 function handleClick(evt) {
-    evt.preventDefault();
-    if (evt.target === evt.currentTarget) {
+evt.preventDefault();
+if (evt.target === evt.currentTarget) {
     console.log("exit");
     return;
-    }
-    let source = evt.target.dataset.source;
-    instance = basicLightbox.create(
+}
+let source = evt.target.dataset.source;
+instance = basicLightbox.create(
     `
     <img src="${source}" width="800" height="600">
 `,
     {
-        onShow: () => document.addEventListener("keydown", handleKey),
-        onClose: () => document.removeEventListener("keydown", handleKey),
+    onShow: () => document.addEventListener("keydown", handleKey),
+    onClose: () => document.removeEventListener("keydown", handleKey),
     }
-    );
+);
 
-    instance.show();
+instance.show();
 }
 
 function handleKey(evt) {
-    if (basicLightbox.visible() && evt.code === "Escape") {
+if (basicLightbox.visible() && evt.code === "Escape") {
     instance.close();
     console.log("work");
 }
