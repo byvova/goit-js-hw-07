@@ -30,23 +30,27 @@ const images = [
 
 const gallery = document.querySelector('.gallery')
 
-gallery.style = "display: flex; gap: 10px; justify-content: center;"
+gallery.style = "display: flex; gap: 10px; justify-content: center; list-style: none"
 
-images.forEach((img) => {
-  const listItem = document.createElement("li");
-  const image = document.createElement("img");
-  image.src = img.url;
-  image.alt = img.alt;
-  listItem.style = 'list-style: none'
-  image.style = 'width: 150px'
-  image.style = 'height: 150px'
-  listItem.appendChild(image);
-  gallery.appendChild(listItem);
-});
+const list = images
+  .map((image) => `<li class="list-item"><img class="img-item" src="${image.url}" alt="${image.alt}"></li>`)
+  .join('');
+
+gallery.insertAdjacentHTML('beforeend', list);
 
 
+// images.forEach((img) => {
+//   const listItem = document.createElement("li");
+//   const image = document.createElement("img");
+//   image.src = img.url;
+//   image.alt = img.alt;
+//   listItem.style = 'list-style: none'
+//   image.style = 'width: 150px'
+//   image.style = 'height: 150px'
+//   listItem.appendChild(image);
+//   gallery.appendChild(listItem);
+// });
 
-console.log()
 
 
 
